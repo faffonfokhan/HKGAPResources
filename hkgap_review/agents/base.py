@@ -12,7 +12,9 @@ from ..schemas import AgentReview, Paragraph
 
 
 class LLMProvider(Protocol):
-    async def generate_json(self, agent_name: str, system_prompt: str, user_prompt: str) -> dict: ...
+    async def generate_json(
+        self, agent_name: str, system_prompt: str, user_prompt: str
+    ) -> dict: ...
 
 
 class OpenAIJSONProvider:
@@ -101,7 +103,9 @@ class BaseAgent:
         return AgentReview.model_validate(payload)
 
 
-def build_provider(settings: Settings, canned_responses: dict[str, dict] | None = None) -> LLMProvider:
+def build_provider(
+    settings: Settings, canned_responses: dict[str, dict] | None = None
+) -> LLMProvider:
     if settings.llm_provider.lower() == "mock":
         return MockLLMProvider(canned_responses or {})
     return OpenAIJSONProvider(settings)

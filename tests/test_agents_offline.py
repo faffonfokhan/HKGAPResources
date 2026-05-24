@@ -13,7 +13,9 @@ def test_editor_in_chief_offline_known_issues_surface() -> None:
         "StructuralBiophysicistAgent": {
             "agent": "StructuralBiophysicistAgent",
             "commentary": None,
-            "referee_items": [{"category": "Factual", "comment": "Check units", "severity": "major"}],
+            "referee_items": [
+                {"category": "Factual", "comment": "Check units", "severity": "major"}
+            ],
             "checklist": [{"item": "Verify unit conversions", "category": "Methods"}],
             "integrity_flags": [],
             "unsupported_claims": [],
@@ -44,7 +46,10 @@ def test_editor_in_chief_offline_known_issues_surface() -> None:
         },
         "ScienceCommunicatorAgent": {
             "agent": "ScienceCommunicatorAgent",
-            "commentary": "The paragraph is understandable. Think of it as traffic flowing through narrowing lanes.",
+            "commentary": (
+                "The paragraph is understandable. "
+                "Think of it as traffic flowing through narrowing lanes."
+            ),
             "referee_items": [],
             "checklist": [],
             "integrity_flags": [],
@@ -59,9 +64,11 @@ def test_editor_in_chief_offline_known_issues_surface() -> None:
         section="ABSTRACT",
         index=1,
         text=(
-            "Barrier is 1.2 kBT and 5.2 kBT; committor p_B 0.50 is result though protocol is proposed protocol; "
-            "USER INPUT requires re-running the full pipeline; [N_NONNATIVE — see D3]; U → I barrier  0.49  3,57; "
-            "section 4 then 6 Conclusions; f_c = 0.60 fixed and predicted; never been continuously mapped for any protein; "
+            "Barrier is 1.2 kBT and 5.2 kBT; committor p_B 0.50 is result though "
+            "protocol is proposed protocol; USER INPUT requires re-running the full "
+            "pipeline; [N_NONNATIVE — see D3]; U → I barrier  0.49  3,57; section 4 "
+            "then 6 Conclusions; f_c = 0.60 fixed and predicted; never been "
+            "continuously mapped for any protein; "
             "single 1 μs trajectory no replicates no error bars; cmap=jet"
         ),
     )

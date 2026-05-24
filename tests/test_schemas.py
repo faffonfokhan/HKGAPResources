@@ -6,7 +6,9 @@ def test_schema_validation_roundtrip() -> None:
     review = AgentReview(
         agent="StructuralBiophysicistAgent",
         commentary=None,
-        referee_items=[RefereeItem(category="Factual", comment="Looks plausible", severity="minor")],
+        referee_items=[
+            RefereeItem(category="Factual", comment="Looks plausible", severity="minor")
+        ],
         checklist=[ChecklistItem(item="Add uncertainty bars", category="Statistics")],
         integrity_flags=[],
         unsupported_claims=[],

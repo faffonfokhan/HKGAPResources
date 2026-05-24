@@ -21,7 +21,8 @@ KNOWN_ISSUES: list[KnownIssue] = [
         severity="show-stopper",
         category="Internal consistency",
         comment=(
-            "Abstract reports barrier minimum near 1.2 k_BT while §4.1 reports approximately 5.2 k_BT; "
+            "Abstract reports barrier minimum near 1.2 k_BT while §4.1 reports "
+            "approximately 5.2 k_BT; "
             "resolve this contradiction before submission."
         ),
         integrity_flag=True,
@@ -31,17 +32,22 @@ KNOWN_ISSUES: list[KnownIssue] = [
         severity="show-stopper",
         category="Academic integrity",
         comment=(
-            "Committor ⟨p_B⟩≈0.50 is presented as a result in Abstract/Conclusions while §4.3 frames it as "
+            "Committor ⟨p_B⟩≈0.50 is presented as a result in Abstract/Conclusions "
+            "while §4.3 frames it as "
             "a proposed protocol; claims must match executed methods."
         ),
         integrity_flag=True,
     ),
     KnownIssue(
-        pattern_regex=r"USER INPUT|re-running the full pipeline|0\.7\s*k_?b?t|f\s*=\s*0\.30|f\s*=\s*0\.65",
+        pattern_regex=(
+            r"USER INPUT|re-running the full pipeline|0\.7\s*k_?b?t|f\s*=\s*0\.30|"
+            r"f\s*=\s*0\.65"
+        ),
         severity="show-stopper",
         category="Result support",
         comment=(
-            "Shuffled-MJ barrier values are marked as placeholder/user-input yet conclusions assert precise "
+            "Shuffled-MJ barrier values are marked as placeholder/user-input yet "
+            "conclusions assert precise "
             "numeric outcomes; remove or recompute with full pipeline."
         ),
         integrity_flag=True,
@@ -50,7 +56,10 @@ KNOWN_ISSUES: list[KnownIssue] = [
         pattern_regex=r"N_NONNATIVE|D3",
         severity="major",
         category="Presentation",
-        comment="Methods still contains placeholder token [N_NONNATIVE — see D3]; replace with final value.",
+        comment=(
+            "Methods still contains placeholder token [N_NONNATIVE — see D3]; "
+            "replace with final value."
+        ),
     ),
     KnownIssue(
         pattern_regex=r"3,57|U\s*→\s*I",
@@ -62,14 +71,18 @@ KNOWN_ISSUES: list[KnownIssue] = [
         pattern_regex=r"\b4\b.*\b6\b|Conclusions",
         severity="major",
         category="Presentation",
-        comment="Section numbering jumps from §4 to §6; add missing §5 or renumber sections consistently.",
+        comment=(
+            "Section numbering jumps from §4 to §6; add missing §5 or renumber "
+            "sections consistently."
+        ),
     ),
     KnownIssue(
         pattern_regex=r"f_c\s*=\s*0\.60|fixed|predicted",
         severity="major",
         category="Statistical rigor",
         comment=(
-            "Regression appears circular: f_c = 0.60 is fixed and then reported as predicted; refit with "
+            "Regression appears circular: f_c = 0.60 is fixed and then reported as "
+            "predicted; refit with "
             "independent estimation and uncertainty."
         ),
     ),
@@ -78,16 +91,21 @@ KNOWN_ISSUES: list[KnownIssue] = [
         severity="major",
         category="Novelty claim",
         comment=(
-            "Absolute novelty phrasing is over-strong; prior work (e.g., Karanicolas & Brooks 2003) already "
+            "Absolute novelty phrasing is over-strong; prior work (e.g., Karanicolas "
+            "& Brooks 2003) already "
             "varied non-native strength in Gō-like frameworks."
         ),
     ),
     KnownIssue(
-        pattern_regex=r"single\s*1\s*μ?s|single\s*1\s*us|no replicates|error bars",
+        pattern_regex=(
+            r"single\s*1\s*μ?s|single\s*1\s*us|1\s*microsecond|"
+            r"no replicates|error bars"
+        ),
         severity="show-stopper",
         category="Methodological rigor",
         comment=(
-            "Only a single ~1 μs trajectory per f with no replicates/error bars is insufficient for robust barrier "
+            "Only a single ~1 μs trajectory per f with no replicates/error bars is "
+            "insufficient for robust barrier "
             "claims; add replicate simulations and uncertainty estimates."
         ),
     ),
@@ -95,7 +113,9 @@ KNOWN_ISSUES: list[KnownIssue] = [
         pattern_regex=r"cmap\s*=\s*jet|jet",
         severity="minor",
         category="Presentation",
-        comment="Using cmap=jet is not color-blind friendly; switch to a perceptually uniform palette.",
+        comment=(
+            "Using cmap=jet is not color-blind friendly; switch to a perceptually uniform palette."
+        ),
     ),
 ]
 

@@ -24,7 +24,7 @@ class Settings(BaseModel):
         cls,
         provider_override: str | None = None,
         model_override: str | None = None,
-    ) -> "Settings":
+    ) -> Settings:
         return cls(
             llm_provider=(provider_override or os.getenv("LLM_PROVIDER", "openai")).strip(),
             model_name=(model_override or os.getenv("MODEL_NAME", "gpt-4o-mini")).strip(),

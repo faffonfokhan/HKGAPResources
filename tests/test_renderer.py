@@ -1,7 +1,13 @@
 from datetime import datetime, timezone
 
 from hkgap_review.renderer import render_report
-from hkgap_review.schemas import ChecklistItem, MergedCommentary, Paragraph, RefereeItem, ReviewReport
+from hkgap_review.schemas import (
+    ChecklistItem,
+    MergedCommentary,
+    Paragraph,
+    RefereeItem,
+    ReviewReport,
+)
 
 
 def test_renderer_generates_required_sections() -> None:

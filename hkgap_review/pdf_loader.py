@@ -8,16 +8,17 @@ from pypdf import PdfReader
 from .schemas import Paragraph
 
 _SECTION_PATTERNS = [
-    (re.compile(r"^abstract$", re.IGNORECASE), "ABSTRACT"),
-    (re.compile(r"^introduction$", re.IGNORECASE), "INTRODUCTION"),
-    (re.compile(r"^literature review$", re.IGNORECASE), "LITERATURE REVIEW"),
-    (re.compile(r"^methods?$", re.IGNORECASE), "Methods"),
-    (re.compile(r"^4\.1"), "4.1"),
-    (re.compile(r"^4\.2"), "4.2"),
-    (re.compile(r"^4\.3"), "4.3"),
-    (re.compile(r"^4\.4"), "4.4"),
-    (re.compile(r"^6\.?\s*conclusions?$", re.IGNORECASE), "6. Conclusions"),
-    (re.compile(r"^references$", re.IGNORECASE), "References"),
+    (re.compile(r"^(short\s+)?abstract\b", re.IGNORECASE), "ABSTRACT"),
+    (re.compile(r"^introduction\b", re.IGNORECASE), "INTRODUCTION"),
+    (re.compile(r"^literature\s+review\b", re.IGNORECASE), "LITERATURE REVIEW"),
+    (re.compile(r"^(materials\s+and\s+)?methods?\b", re.IGNORECASE), "Methods"),
+    (re.compile(r"^4\.\s*results", re.IGNORECASE), "4. Results and Discussion"),
+    (re.compile(r"^4\.1\b", re.IGNORECASE), "4.1"),
+    (re.compile(r"^4\.2\b", re.IGNORECASE), "4.2"),
+    (re.compile(r"^4\.3\b", re.IGNORECASE), "4.3"),
+    (re.compile(r"^4\.4\b", re.IGNORECASE), "4.4"),
+    (re.compile(r"^6\.?\s*conclusions?\b", re.IGNORECASE), "6. Conclusions"),
+    (re.compile(r"^references\b", re.IGNORECASE), "References"),
 ]
 
 
@@ -88,7 +89,9 @@ def segment_paragraphs(raw_text: str) -> list[Paragraph]:
     if references_lines:
         section_counts["References"] = 1
         paragraphs.append(
-            Paragraph(section="References", index=1, text=_normalize_line(" ".join(references_lines)))
+            Paragraph(
+                section="References", index=1, text=_normalize_line(" ".join(references_lines))
+            )
         )
 
     return paragraphs

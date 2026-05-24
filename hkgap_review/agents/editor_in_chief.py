@@ -30,7 +30,8 @@ class EditorInChiefAgent:
         if "Think of it as" in commentary or "It's like" in commentary:
             return commentary
         return (
-            f"{commentary.strip()} Think of it as trying to steer a marble across a tilted, bumpy table: "
+            f"{commentary.strip()} "
+            "Think of it as trying to steer a marble across a tilted, bumpy table: "
             "you need both the slope and the bumps quantified before claiming where it will stop."
         ).strip()
 
@@ -71,7 +72,9 @@ class EditorInChiefAgent:
         critique.extend(known_items)
         integrity_flags.extend(known_integrity)
 
-        integrity_flags = list(dict.fromkeys(flag.strip() for flag in integrity_flags if flag.strip()))
+        integrity_flags = list(
+            dict.fromkeys(flag.strip() for flag in integrity_flags if flag.strip())
+        )
         checklist = self._dedupe_checklist(checklist)
 
         return MergedCommentary(
@@ -92,14 +95,32 @@ class EditorInChiefAgent:
                 severity_counts[item.severity] += 1
 
         strongest = [
-            "The manuscript tackles a meaningful mechanistic question around folding landscapes and non-native interactions.",
-            "The framework is positioned around interpretable coordinates (Q, free-energy barriers), which can support strong discussion.",
-            "The study is close to publishable structure with clear sectioning and explicit methods ambitions.",
+            (
+                "The manuscript tackles a meaningful mechanistic question around folding "
+                "landscapes and non-native interactions."
+            ),
+            (
+                "The framework is positioned around interpretable coordinates (Q, "
+                "free-energy barriers), which can support strong discussion."
+            ),
+            (
+                "The study is close to publishable structure with clear sectioning and "
+                "explicit methods ambitions."
+            ),
         ]
         concerns = [
-            "Key claims are not consistently supported by methods/results alignment (committor and placeholder-derived conclusions).",
-            "Statistical support appears weak where replicate trajectories and uncertainty quantification are required.",
-            "Several presentation and consistency issues (numbering, typo, accessibility) need correction before submission.",
+            (
+                "Key claims are not consistently supported by methods/results alignment "
+                "(committor and placeholder-derived conclusions)."
+            ),
+            (
+                "Statistical support appears weak where replicate trajectories and "
+                "uncertainty quantification are required."
+            ),
+            (
+                "Several presentation and consistency issues (numbering, typo, "
+                "accessibility) need correction before submission."
+            ),
         ]
         recommendation = (
             "Overall recommendation: major revision before journal submission. "
@@ -120,9 +141,7 @@ class EditorInChiefAgent:
         )
 
     async def review_document(self, paragraphs: list[Paragraph]) -> ReviewReport:
-        context = "\n\n".join(
-            f"[{p.section} ¶{p.index}] {p.text}" for p in paragraphs
-        )
+        context = "\n\n".join(f"[{p.section} ¶{p.index}] {p.text}" for p in paragraphs)
         merged: list[MergedCommentary] = []
         for paragraph in paragraphs:
             merged.append(await self.review_paragraph(paragraph, context))

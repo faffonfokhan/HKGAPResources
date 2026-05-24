@@ -31,7 +31,9 @@ def _build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-async def _run_review(pdf_path: Path, out_path: Path, provider: str | None, model: str | None) -> int:
+async def _run_review(
+    pdf_path: Path, out_path: Path, provider: str | None, model: str | None
+) -> int:
     load_dotenv()
     settings = Settings.from_env(provider_override=provider, model_override=model)
     paragraphs = extract_paragraphs(pdf_path)
